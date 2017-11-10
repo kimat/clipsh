@@ -15,17 +15,16 @@ watch -n1 ./clip.sh
 ## Usage
 
 ```
-FOLDER=/dev/shm/clipshed
+FOLDER=/dev/shm/clipsh
 NB_CHARS_PREVIEW=160
+list_clips() { find $FOLDER -type f -print0 | xargs -0 -I{} sh -c "head -c160 {} | tr -d '\n' ; echo ' {}'"; }
+
 
 # fzy
-cat $(find $FOLDER -type f | xargs -I{} sh -c 'print $(head -c160 {}) |\
-sed -r "s/\n/ /g" ; echo " {}"' | fzy | awk '{print $NF}') | xclip -selection c
+cat $(list_clips | fzy | awk '{print $NF}') | xclip -selection c
 
 # rofi
-cat $(find $FOLDER -type f | xargs -I{} sh -c 'echo -n $(head -c160 {}) |\
-sed -r "s/[\n\r]/ /g" ; echo " {}"' | rofi -dmenu | awk '{print $NF}') |\
-xclip -selection c
+cat $(list_clips | rofi -dmenu| awk '{print $NF}') | xclip -selection c
 ```
 
 ## Configuration
