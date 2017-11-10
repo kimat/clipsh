@@ -4,7 +4,7 @@ A minimal clipboard manager
 
 ## Usage
 
-- Run the daemon using : `watch -n1 ./clip.sh` : every second,
+- Run the daemon using : `watch -n1 ./clipsh` : every second,
   clipboard content will be saved
 - use `./lsclips` to build a command to replace your
   current clipboard with a previous one or
