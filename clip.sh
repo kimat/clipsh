@@ -20,7 +20,7 @@ LAST_CLIP_MD5=$(md5sum "$LAST_CLIP" |  awk '{print $1}')
 [ "$LAST_CLIP_MD5" == "$CLIP_MD5" ] && echo "clip didnt change" && exit 0
 
 # check if already clipped
-ALREADY_CLIPPED=$(find $FOLDER -type f -0 | xargs -0 md5sum |  grep "$CLIP_MD5")
+ALREADY_CLIPPED=$(find $FOLDER -type f -print0 | xargs -0 md5sum |  grep "$CLIP_MD5")
 echo "already clipped: $ALREADY_CLIPPED"
 
 if [ ! -z "$ALREADY_CLIPPED" ]; then
