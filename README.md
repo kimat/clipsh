@@ -19,7 +19,6 @@ FOLDER=/dev/shm/clipsh
 NB_CHARS_PREVIEW=160
 list_clips() { find $FOLDER -type f -print0 | xargs -0 -I{} sh -c "head -c160 {} | tr -d '\n' ; echo ' {}'"; }
 
-
 # fzy
 cat $(list_clips | fzy | awk '{print $NF}') | xclip -selection c
 
