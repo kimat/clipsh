@@ -3,7 +3,7 @@
 clip(){ xclip -selection c -o; }
 # clip(){ xclip -o; } # use this to watch any selection
 FOLDER="/dev/shm/clipsh"
-[ ! -d "$FOLDER" ] && mkdir $FOLDER
+install -d -m 700 $FOLDER
 FILENAME="${FOLDER}/$(date +%s)"
 
 # compute clip MD5
