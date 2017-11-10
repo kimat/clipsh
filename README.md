@@ -30,4 +30,5 @@ xclip -selection c
 
 ## Configuration
 
-Adapt `$CLIP_CMD` if you want to keep history of all selected text too
+- adapt `$CLIP_CMD` if you want to keep history of all selected text too
+- adapt `$FOLDER` if you want to keep clips written to disk
