@@ -2,31 +2,16 @@
 
 A minimal clipboard manager
 
-## Dependencies
-
-[xclip](https://github.com/astrand/xclip) or adapt `clip()`
-
-## Daemonise
-
-```
-watch -n1 ./clip.sh
-```
-
 ## Usage
 
-```
-FOLDER=/dev/shm/clipsh
-NB_CHARS_PREVIEW=160
-list_clips() { find $FOLDER -type f -print0 | xargs -0 -I{} sh -c "head -c160 {} | tr -d '\n' ; echo ' {}'"; }
-
-# fzy
-cat $(list_clips | fzy | awk '{print $NF}') | xclip -selection c
-
-# rofi
-cat $(list_clips | rofi -dmenu| awk '{print $NF}') | xclip -selection c
-```
+- Run the daemon using : `watch -n1 ./clip.sh` : every second,
+  clipboard content will be saved
+- use `./lsclips` to build a command to replace your
+  current clipboard with a previous one with a previous one
+  use a ready made one from `examples` folder
 
 ## Configuration
 
-- adapt `clip()` if you want to keep history of all selected text too
-- adapt `$FOLDER` if you want to keep clips written to disk
+- adapt `clip()` in `clipsh` if you want to keep history of all selected text too
+- adapt `$FOLDER` in `clipsh` if you want clips to be written to disk
+- adapt `clip()` in `clipsh` || `examples/*` if you wan't to replace [xclip](https://github.com/astrand/xclip)
