@@ -2,7 +2,8 @@
 
 CLIP_CMD="xclip -selection -c -o"
 # CLIP_CMD="xclip -o" # use this to watch any selection
-FOLDER="/dev/shm/clipshed"
+FOLDER="/dev/shm/clipsh"
+[ ! -d "$FOLDER" ] && mkdir $FOLDER
 FILENAME="${FOLDER}/$(date +%s)"
 
 # compute clip MD5
