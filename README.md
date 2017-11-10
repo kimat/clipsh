@@ -4,7 +4,7 @@ A minimal clipboard manager
 
 ## Dependencies
 
-[xclip](https://github.com/astrand/xclip) or adapt `$CLIP_CMD`
+[xclip](https://github.com/astrand/xclip) or adapt `clip()`
 
 ## Daemonise
 
@@ -30,5 +30,5 @@ xclip -selection c
 
 ## Configuration
 
-- adapt `$CLIP_CMD` if you want to keep history of all selected text too
+- adapt `clip()` if you want to keep history of all selected text too
 - adapt `$FOLDER` if you want to keep clips written to disk
