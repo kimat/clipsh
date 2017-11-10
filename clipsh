@@ -2,31 +2,31 @@
 
 clip(){ xclip -selection c -o; }
 # clip(){ xclip -o; } # use this to watch any selection
-FOLDER="/dev/shm/clipsh"
-install -d -m 700 $FOLDER
-FILENAME="${FOLDER}/$(date +%s)"
+folder="/dev/shm/clipsh"
+install -d -m 700 $folder
+filename="${folder}/$(date +%s)"
 
 # compute clip MD5
-CLIP_MD5=$(clip | md5sum | awk '{print $1}')
-echo "$CLIP_MD5"
+clip_md5=$(clip | md5sum | awk '{print $1}')
+echo "$clip_md5"
 
 # last clip is still the clipboard
-LAST_CLIP=$(find ${FOLDER} -type f | head -1)
+last_clip=$(find ${folder} -type f | head -1)
 
 # first clip ?
-[ -z "$LAST_CLIP" ] && clip > "$FILENAME" && echo "wrote first clip" && exit 0
-LAST_CLIP_MD5=$(md5sum "$LAST_CLIP" |  awk '{print $1}')
+[ -z "$last_clip" ] && clip > "$filename" && echo "wrote first clip" && exit 0
+last_clip_md5=$(md5sum "$last_clip" |  awk '{print $1}')
 
-[ "$LAST_CLIP_MD5" == "$CLIP_MD5" ] && echo "clip didnt change" && exit 0
+[ "$last_clip_md5" == "$clip_md5" ] && echo "clip didnt change" && exit 0
 
 # check if already clipped
-ALREADY_CLIPPED=$(find $FOLDER -type f -print0 | xargs -0 md5sum |  grep "$CLIP_MD5")
-echo "already clipped: $ALREADY_CLIPPED"
+already_clipped=$(find $folder -type f -print0 | xargs -0 md5sum |  grep "$clip_md5")
+echo "already clipped: $already_clipped"
 
-if [ ! -z "$ALREADY_CLIPPED" ]; then
+if [ ! -z "$already_clipped" ]; then
   echo 'promoting duplicate'
-  mv "$(echo "$ALREADY_CLIPPED"| awk '{print $2}')" "$FILENAME"
+  mv "$(echo "$already_clipped"| awk '{print $2}')" "$filename"
 else
   echo "adding new clip"
-  clip> "$FILENAME"
+  clip> "$filename"
 fi

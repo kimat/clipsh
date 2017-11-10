@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-FOLDER=/dev/shm/clipsh
-NB_CHARS_PREVIEW=100
-find $FOLDER -type f -print0 |\
+folder=/dev/shm/clipsh
+nb_chars_preview=100
+find $folder -type f -print0 |\
   xargs -0 -I{} sh -c "\
-    head -c$NB_CHARS_PREVIEW {} |\
+    head -c$nb_chars_preview {} |\
     tr -d '\n' ;\
     echo ' {}'\
   ";
