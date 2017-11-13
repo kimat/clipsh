@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# https://github.com/jhawthorn/fzy
-filter(){ fzy; }
+# https://github.com/junegunn/fzf
+filter(){ fzf --with-nth=1; }
 clip(){ xclip -selection c; }
 cat $(${BASH_SOURCE%/*}/../lsclips | filter | awk '{print $NF}') | clip
