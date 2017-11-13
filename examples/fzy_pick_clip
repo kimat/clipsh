@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+filter(){ fzy; }
+clip(){ xclip -selection c; }
+cat $(${BASH_SOURCE%/*}/../lsclips | filter | awk '{print $NF}') | clip
